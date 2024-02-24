@@ -1,11 +1,17 @@
-import './App.css'
-import CarList from './components/CarList'
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import VehicleDetails from "./pages/VehicleDetails";
 
 function App() {
-
   return (
-    <CarList />
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/details/:id" element={<VehicleDetails />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;

@@ -1,14 +1,14 @@
-import "./CarList.css";
+import "./VehicleList.css";
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
-import CarInterface from "../interfaces/CarInterface";
-import CarListCard from "./CarListCard";
-import CarForm from "./CarForm";
+import CarInterface from "../interfaces/Vehicle";
+import VehicleListCard from "./VehicleListCard";
+import VehicleForm from "./VehicleForm";
 
-const CarList = () => {
+const VehicleList = () => {
   const [isInsert, setIsInsert] = useState<boolean>(false);
   const carList: CarInterface[] = [
     {
@@ -35,10 +35,10 @@ const CarList = () => {
       <button className="btn btn-new-car" onClick={() => setIsInsert(true)}>
         <FontAwesomeIcon icon={faPlus} /> <span>Novo veículo</span>
       </button>
-      {isInsert && <CarForm setIsInsert={setIsInsert} />}
+      {isInsert && <VehicleForm setIsInsert={setIsInsert} />}
       <div className="car-list">
         {carList.map((car: CarInterface) => (
-          <CarListCard
+          <VehicleListCard
             id={car.id}
             model={car.model}
             brand={car.brand}
@@ -55,4 +55,4 @@ const CarList = () => {
   );
 };
 
-export default CarList;
+export default VehicleList;

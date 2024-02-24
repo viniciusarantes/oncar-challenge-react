@@ -1,7 +1,8 @@
-import "./CarListCard.css";
-import CarInterface from "../interfaces/CarInterface";
+import "./VehicleListCard.css";
+import Vehicle from "../interfaces/Vehicle";
+import { Link } from "react-router-dom";
 
-const CarListCard: React.FC<CarInterface> = ({
+const VehicleListCard: React.FC<Vehicle> = ({
   id,
   brand,
   model,
@@ -9,7 +10,6 @@ const CarListCard: React.FC<CarInterface> = ({
   year,
   km,
 }) => {
-  console.log(id, brand);
   return (
     <div className="card">
       <div className="card-header">
@@ -35,12 +35,10 @@ const CarListCard: React.FC<CarInterface> = ({
         </div>
       </div>
       <div className="card-footer">
-        <a href="#" className="details">
-          Ver detalhes
-        </a>
+        <Link to={`details/${id}`}>Ver detalhes</Link>
       </div>
     </div>
   );
 };
 
-export default CarListCard;
+export default VehicleListCard;

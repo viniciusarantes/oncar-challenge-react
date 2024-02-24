@@ -1,11 +1,11 @@
 import { FormEvent, useState } from "react";
 import "./CarForm.css";
 
-interface CarFormProps {
+interface VehicleFormProps {
   setIsInsert: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CarForm: React.FC<CarFormProps> = ({ setIsInsert }) => {
+const VehicleForm: React.FC<VehicleFormProps> = ({ setIsInsert }) => {
   const [brand, setBrand] = useState<string>();
   const [model, setModel] = useState<string>();
   const [year, setYear] = useState<number>();
@@ -106,4 +106,4 @@ const CarForm: React.FC<CarFormProps> = ({ setIsInsert }) => {
   );
 };
 
-export default CarForm;
+export default VehicleForm;

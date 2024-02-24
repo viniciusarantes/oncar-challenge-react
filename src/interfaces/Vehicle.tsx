@@ -1,4 +1,4 @@
-interface Car {
+interface Vehicle {
   id: number;
   brand: string;
   model: string;
@@ -7,4 +7,4 @@ interface Car {
   km: number;
 }
 
-export default Car;
+export default Vehicle;
