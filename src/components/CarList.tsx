@@ -1,11 +1,15 @@
 import "./CarList.css";
+
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import CarInterface from "../interfaces/CarInterface";
 import CarListCard from "./CarListCard";
+import CarForm from "./CarForm";
 
 const CarList = () => {
+  const [isInsert, setIsInsert] = useState<boolean>(false);
   const carList: CarInterface[] = [
     {
       id: 1,
@@ -27,10 +31,11 @@ const CarList = () => {
 
   return (
     <div className="container">
-      <h1 className="title-list">Lista de Carros</h1>
-      <button className="btn btn-new-car">
-        <FontAwesomeIcon icon={faPlus} /> <span>Novo carro</span>
+      <h1 className="title-list">Lista de Veículos</h1>
+      <button className="btn btn-new-car" onClick={() => setIsInsert(true)}>
+        <FontAwesomeIcon icon={faPlus} /> <span>Novo veículo</span>
       </button>
+      {isInsert && <CarForm setIsInsert={setIsInsert} />}
       <div className="car-list">
         {carList.map((car: CarInterface) => (
           <CarListCard

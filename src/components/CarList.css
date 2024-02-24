@@ -12,7 +12,6 @@ span.empty-list {
 }
 
 button.btn-new-car {
-    max-width: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
