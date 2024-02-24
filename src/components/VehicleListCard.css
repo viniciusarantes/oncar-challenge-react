@@ -19,6 +19,24 @@
     justify-content: center;
     align-items: center;
     border-bottom: 2px solid #808080;
+    position: relative;
+}
+
+.btn-delete {
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    color: rgb(199, 39, 39);
+    margin: 5px;
+    font-size: 12pt;
+    border: 0;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    color: rgb(145, 31, 31);
+    transition: .3s;
 }
 
 .card-header span {

@@ -28,7 +28,9 @@ const VehicleDetails = () => {
       </Link>
 
       <div className="details">
-        <div className="details-title">Chevrolet Onix</div>
+        <div className="details-title">
+          {vehicle.brand} {vehicle.model}
+        </div>
         <div className="details-row"></div>
         <div className="details-row">
           <span className="label">Marca</span>

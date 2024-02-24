@@ -1,6 +1,8 @@
 import "./VehicleListCard.css";
 import Vehicle from "../interfaces/Vehicle";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const VehicleListCard: React.FC<Vehicle> = ({
   id,
@@ -14,6 +16,9 @@ const VehicleListCard: React.FC<Vehicle> = ({
     <div className="card">
       <div className="card-header">
         <span>{model}</span>
+        <button className="btn-delete" title="Remover veículo">
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
       </div>
       <div className="card-body">
         <div className="body-row"></div>

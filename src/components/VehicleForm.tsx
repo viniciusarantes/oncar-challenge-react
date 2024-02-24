@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import "./CarForm.css";
+import "./VehicleForm.css";
 
 interface VehicleFormProps {
   setIsInsert: React.Dispatch<React.SetStateAction<boolean>>;
