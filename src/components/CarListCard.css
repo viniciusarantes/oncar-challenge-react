@@ -1,0 +1,79 @@
+.card {
+    min-width: 280px;
+    margin: 15px;
+    padding: 0;
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px #adadad;
+    display: flex;
+    flex-direction: column;
+}
+
+.card div {
+    flex: 1;
+}
+
+.card-header {
+    margin: 0;
+    padding: 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 2px solid #808080;
+}
+
+.card-header span {
+    font-size: 14pt;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.card-body {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.body-row {
+    margin: 0 25px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    border-bottom: 1px solid gray;
+    
+}
+
+.body-row span {
+    flex: 1;
+    text-align: left;
+    padding: 0 15px;
+    font-size: 11pt;
+}
+
+.body-row span.label {
+    text-align: right;
+    border-right: 1px solid gray
+}
+
+.card-footer {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #555555;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.card-footer a {
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.card-footer:hover {
+    background-color: #2b2b2b;
+    transition: .3s;
+}
