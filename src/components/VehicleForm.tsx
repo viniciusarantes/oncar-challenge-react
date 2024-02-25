@@ -1,4 +1,4 @@
-import Vehicle from "../interfaces/Vehicle";
+import Vehicle from "../@types/vehicle";
 import "./VehicleForm.css";
 import { FormEvent, useState } from "react";
 

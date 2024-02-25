@@ -1,0 +1,32 @@
+.alert {
+    position: fixed;
+    width: 350px;
+    min-height: 50px;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    top: 0;
+    right: 0;
+    margin: 1rem;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px black;
+    display: none;
+}
+
+.success {
+    background-color: rgb(81, 214, 81);
+    animation: fadeinout 5s linear forwards;
+    display: flex;
+}
+
+.error {
+    background-color: rgb(223, 75, 75);
+    animation: fadeinout 5s linear forwards;
+    display: flex;
+}
+
+@keyframes fadeinout {
+    0%,100% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+}

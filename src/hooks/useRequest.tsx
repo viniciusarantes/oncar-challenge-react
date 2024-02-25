@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import Vehicle from "../interfaces/Vehicle";
+import Vehicle from "../@types/vehicle";
+import useAlertContext from "./useAlertContext";
+import { AlertContextType } from "../@types/alert";
 
 const useRequest = (url: string) => {
   const [data, setData] = useState<Vehicle[]>();
   const [vehicle, setVehicle] = useState<Vehicle>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
   const [callFetch, setCallFetch] = useState<boolean>(false);
+
+  const { createMessage } = useAlertContext() as AlertContextType;
 
   const getHttpOptions = () => {
     return {
@@ -21,7 +24,6 @@ const useRequest = (url: string) => {
   const createVehicle = (payload: Vehicle) => {
     const sendRequest = async () => {
       try {
-        setError("");
         setLoading(true);
         let httpOptions = {
           ...getHttpOptions(),
@@ -29,11 +31,17 @@ const useRequest = (url: string) => {
         };
         httpOptions.method = "POST";
         await fetch(url, httpOptions);
+        createMessage({
+          status: "success",
+          message: "Veículo criado com sucesso!",
+        });
         setLoading(false);
         setCallFetch(true);
       } catch (error) {
-        setError(`Falha ao criar veículo ${error}`);
+        console.log("Erro aqui", error);
+        createMessage({ status: "error", message: "Falha ao criar veículo" });
         setLoading(false);
+        console.log(error);
       }
     };
     sendRequest();
@@ -42,17 +50,21 @@ const useRequest = (url: string) => {
   const deleteVehicle = (id?: number) => {
     const sendRequest = async () => {
       try {
-        setError("");
         setLoading(true);
         let httpOptions = { ...getHttpOptions() };
         httpOptions.method = "DELETE";
         const parsedUrl = `${url}/${id}`;
         await fetch(parsedUrl, httpOptions);
+        createMessage({
+          status: "success",
+          message: "Veículo deletado com sucesso!",
+        });
         setLoading(false);
         setCallFetch(true);
       } catch (error) {
-        setError(`Falha ao deletar veículo ${error}`);
+        createMessage({ status: "error", message: "Falha ao deletar veículo" });
         setLoading(false);
+        console.log(error);
       }
     };
     sendRequest();
@@ -71,15 +83,19 @@ const useRequest = (url: string) => {
         setLoading(false);
         setCallFetch(false);
       } catch (error) {
-        setError(`Falha ao consultar veículos ${error}`);
+        createMessage({
+          status: "error",
+          message: "Falha ao consultar veículo",
+        });
         setLoading(false);
         setData([]);
+        console.log(error);
       }
     };
     getVehicles();
   }, [url, callFetch]);
 
-  return { data, vehicle, loading, error, createVehicle, deleteVehicle };
+  return { data, vehicle, loading, createVehicle, deleteVehicle };
 };
 
 export default useRequest;

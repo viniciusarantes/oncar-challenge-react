@@ -1,4 +1,5 @@
 import "./VehicleList.css";
+import "../public/loader.css";
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,17 +7,16 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import useRequest from "../hooks/useRequest";
 
-import VehicleInterface from "../interfaces/Vehicle";
+import VehicleInterface from "../@types/vehicle";
 import VehicleListCard from "./VehicleListCard";
 import VehicleForm from "./VehicleForm";
-import Vehicle from "../interfaces/Vehicle";
+import Vehicle from "../@types/vehicle";
 
 const VehicleList = () => {
   const url = "http://localhost:3000/vehicles";
   const {
     data: vehicles,
     loading,
-    error,
     createVehicle,
     deleteVehicle,
   } = useRequest(url);
@@ -40,6 +40,11 @@ const VehicleList = () => {
           loading={loading}
         />
       )}
+      {loading && (
+        <div className="loader-container">
+          <span className="loader"></span>
+        </div>
+      )}
       <div className="vehicle-list">
         {vehicles &&
           vehicles.map((vehicle: VehicleInterface) => (
@@ -55,7 +60,7 @@ const VehicleList = () => {
             />
           ))}
       </div>
-      {vehicles && vehicles.length === 0 && (
+      {!loading && vehicles && vehicles.length === 0 && (
         <span className="empty-list">Nenhum carro registrado.</span>
       )}
     </div>

@@ -7,7 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import useRequest from "../hooks/useRequest";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useAlertContext from "../hooks/useAlertContext";
+import { AlertContextType } from "../@types/alert";
 
 interface SimulationProps {
   score: number;
@@ -20,9 +22,10 @@ const VehicleDetails = () => {
   const url = "http://localhost:3000";
   const { vehicle } = useRequest(`${url}/vehicles/${id}`);
 
+  const { createMessage } = useAlertContext() as AlertContextType;
+
   const [simulation, setSimulation] = useState<SimulationProps>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>("");
 
   const handleSimulate = () => {
     const sendRequest = async () => {
@@ -40,7 +43,11 @@ const VehicleDetails = () => {
         setSimulation(json);
         setLoading(false);
       } catch (err) {
-        setError(`Falha ao solicitar a simulação`);
+        createMessage({
+          status: "error",
+          message: "Falha ao solicitar a simulação",
+        });
+        setLoading(false);
         console.log(err);
       }
     };
