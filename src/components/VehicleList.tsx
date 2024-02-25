@@ -6,7 +6,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import useRequest from "../hooks/useRequest";
 
-import CarInterface from "../interfaces/Vehicle";
+import VehicleInterface from "../interfaces/Vehicle";
 import VehicleListCard from "./VehicleListCard";
 import VehicleForm from "./VehicleForm";
 
@@ -19,21 +19,21 @@ const VehicleList = () => {
   return (
     <div className="container">
       <h1 className="title-list">Lista de Veículos</h1>
-      <button className="btn btn-new-car" onClick={() => setIsInsert(true)}>
+      <button className="btn btn-new-vehicle" onClick={() => setIsInsert(true)}>
         <FontAwesomeIcon icon={faPlus} /> <span>Novo veículo</span>
       </button>
       {isInsert && <VehicleForm setIsInsert={setIsInsert} />}
-      <div className="car-list">
+      <div className="vehicle-list">
         {vehicles &&
-          vehicles.map((car: CarInterface) => (
+          vehicles.map((vehicle: VehicleInterface) => (
             <VehicleListCard
-              key={car.id}
-              id={car.id}
-              model={car.model}
-              brand={car.brand}
-              color={car.color}
-              year={car.year}
-              km={car.km}
+              key={vehicle.id}
+              id={vehicle.id}
+              model={vehicle.model}
+              brand={vehicle.brand}
+              color={vehicle.color}
+              year={vehicle.year}
+              km={vehicle.km}
             />
           ))}
         {vehicles && vehicles.length === 0 && (

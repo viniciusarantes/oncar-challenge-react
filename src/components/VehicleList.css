@@ -11,21 +11,21 @@ span.empty-list {
     font-weight: bold;
 }
 
-button.btn-new-car {
+button.btn-new-vehicle {
     display: flex;
     align-items: center;
     justify-content: center;
     
 }
 
-button.btn-new-car span {
+button.btn-new-vehicle span {
     margin-left: 10px;
 }
 
-.car-list {
-    margin: 20px 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+.vehicle-list {
+    margin: 20px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    gap: 5px;
 }
