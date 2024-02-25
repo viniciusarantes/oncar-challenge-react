@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 import useRequest from "../hooks/useRequest";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface SimulationProps {
   score: number;
