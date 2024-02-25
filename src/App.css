@@ -18,3 +18,11 @@
   background-color: #0039b4;
   transition: .3s;
 }
+
+.btn-disabled {
+  background-color: rgb(87, 87, 87);
+}
+
+.btn-disabled:hover {
+  background-color: rgb(87, 87, 87);
+}

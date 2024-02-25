@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Vehicle from "../interfaces/Vehicle";
 
 const useRequest = (url: string) => {
-  const [data, setData] = useState<Vehicle[] | Vehicle>();
+  const [data, setData] = useState<Vehicle[]>();
   const [vehicle, setVehicle] = useState<Vehicle>();
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string>();
+  const [error, setError] = useState<string>("");
   const [callFetch, setCallFetch] = useState<boolean>(false);
 
   const getHttpOptions = () => {
@@ -28,19 +28,18 @@ const useRequest = (url: string) => {
           body: JSON.stringify(payload),
         };
         httpOptions.method = "POST";
-        const response = await fetch(url, httpOptions);
-        await response.json();
+        await fetch(url, httpOptions);
         setLoading(false);
         setCallFetch(true);
       } catch (error) {
-        setError(`Falha ao deletar veículo ${error}`);
+        setError(`Falha ao criar veículo ${error}`);
         setLoading(false);
       }
     };
     sendRequest();
   };
 
-  const deleteVehicle = (id: number) => {
+  const deleteVehicle = (id?: number) => {
     const sendRequest = async () => {
       try {
         setError("");
@@ -48,8 +47,7 @@ const useRequest = (url: string) => {
         let httpOptions = { ...getHttpOptions() };
         httpOptions.method = "DELETE";
         const parsedUrl = `${url}/${id}`;
-        const response = await fetch(parsedUrl, httpOptions);
-        await response.json();
+        await fetch(parsedUrl, httpOptions);
         setLoading(false);
         setCallFetch(true);
       } catch (error) {
@@ -71,6 +69,7 @@ const useRequest = (url: string) => {
         setData(json);
         setVehicle(json);
         setLoading(false);
+        setCallFetch(false);
       } catch (error) {
         setError(`Falha ao consultar veículos ${error}`);
         setLoading(false);

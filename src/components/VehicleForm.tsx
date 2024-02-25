@@ -1,30 +1,44 @@
-import { FormEvent, useState } from "react";
+import Vehicle from "../interfaces/Vehicle";
 import "./VehicleForm.css";
+import { FormEvent, useState } from "react";
 
 interface VehicleFormProps {
   setIsInsert: React.Dispatch<React.SetStateAction<boolean>>;
+  createVehicle: (payload: Vehicle) => void;
+  loading: boolean;
 }
 
-const VehicleForm: React.FC<VehicleFormProps> = ({ setIsInsert }) => {
-  const [brand, setBrand] = useState<string>();
-  const [model, setModel] = useState<string>();
-  const [year, setYear] = useState<number>();
-  const [color, setColor] = useState<string>();
-  const [km, setKm] = useState<number>();
+const VehicleForm: React.FC<VehicleFormProps> = ({
+  setIsInsert,
+  createVehicle,
+  loading,
+}) => {
+  const [brand, setBrand] = useState<string>("");
+  const [model, setModel] = useState<string>("");
+  const [year, setYear] = useState<number>(0);
+  const [color, setColor] = useState<string>("");
+  const [km, setKm] = useState<number>(0);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log();
-  };
-
-  const handleCancel = () => {
+  const clearForm = () => {
     setBrand("");
     setModel("");
     setYear(0);
     setColor("");
     setKm(0);
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const payload: Vehicle = { brand, model, year, color, km };
+    createVehicle(payload);
+    clearForm();
+  };
+
+  const handleCancel = () => {
+    clearForm();
     setIsInsert(false);
   };
+
   return (
     <div>
       <h3 className="form-title">Adicionar um novo veículo</h3>
@@ -90,8 +104,12 @@ const VehicleForm: React.FC<VehicleFormProps> = ({ setIsInsert }) => {
           />
         </label>
         <div className="form-buttons">
-          <button type="submit" className="btn btn-submit">
-            Criar
+          <button
+            type="submit"
+            className={`btn btn-submit ${loading && "btn-disabled"}`}
+            disabled={loading}
+          >
+            {loading ? "Enviando..." : "Criar"}
           </button>
           <button
             type="button"

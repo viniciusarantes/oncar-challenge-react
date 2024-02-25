@@ -1,22 +1,36 @@
 import "./VehicleListCard.css";
-import Vehicle from "../interfaces/Vehicle";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-const VehicleListCard: React.FC<Vehicle> = ({
+interface VehicleListCardProps {
+  id?: number;
+  brand: string;
+  model: string;
+  color: string;
+  year: number;
+  km: number;
+  deleteVehicle: (id?: number) => void;
+}
+
+const VehicleListCard: React.FC<VehicleListCardProps> = ({
   id,
   brand,
   model,
   color,
   year,
   km,
+  deleteVehicle,
 }) => {
   return (
     <div className="card">
       <div className="card-header">
         <span>{model}</span>
-        <button className="btn-delete" title="Remover veículo">
+        <button
+          className="btn-delete"
+          title="Remover veículo"
+          onClick={() => deleteVehicle(id)}
+        >
           <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>

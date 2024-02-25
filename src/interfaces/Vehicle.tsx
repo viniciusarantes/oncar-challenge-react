@@ -1,5 +1,5 @@
 interface Vehicle {
-  id: number;
+  id?: number;
   brand: string;
   model: string;
   color: string;
