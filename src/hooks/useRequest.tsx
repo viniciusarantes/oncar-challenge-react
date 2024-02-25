@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Vehicle from "../interfaces/Vehicle";
 
 const useRequest = (url: string) => {
-  const [data, setData] = useState<Vehicle[]>();
+  const [data, setData] = useState<Vehicle[] | Vehicle>();
+  const [vehicle, setVehicle] = useState<Vehicle>();
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>();
   const [callFetch, setCallFetch] = useState<boolean>(false);
@@ -68,6 +69,7 @@ const useRequest = (url: string) => {
         const response = await fetch(url, httpOptions);
         const json = await response.json();
         setData(json);
+        setVehicle(json);
         setLoading(false);
       } catch (error) {
         setError(`Falha ao consultar veículos ${error}`);
@@ -78,7 +80,7 @@ const useRequest = (url: string) => {
     getVehicles();
   }, [url, callFetch]);
 
-  return { data, loading, error, createVehicle, deleteVehicle };
+  return { data, vehicle, loading, error, createVehicle, deleteVehicle };
 };
 
 export default useRequest;

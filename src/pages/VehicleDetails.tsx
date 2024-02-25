@@ -6,18 +6,12 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
-import Vehicle from "../interfaces/Vehicle";
+import useRequest from "../hooks/useRequest";
 
 const VehicleDetails = () => {
   const { id } = useParams();
-  let vehicle: Vehicle = {
-    id: 3,
-    brand: "Fiat",
-    model: "Argo",
-    color: "Branco",
-    year: 2020,
-    km: 45000,
-  };
+  const url = "http://localhost:3000/vehicles/" + id;
+  const { vehicle } = useRequest(url);
 
   return (
     <div className="container">
@@ -29,7 +23,7 @@ const VehicleDetails = () => {
 
       <div className="details">
         <div className="details-title">
-          {vehicle.brand} {vehicle.model}
+          {vehicle && vehicle.brand} {vehicle && vehicle.model}
         </div>
         <div className="details-row"></div>
         <div className="details-row">
