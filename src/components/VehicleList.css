@@ -29,10 +29,3 @@ button.btn-new-vehicle span {
     grid-auto-rows: auto;
     gap: 5px;
 }
-
-.loader-container {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}

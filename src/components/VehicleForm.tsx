@@ -1,6 +1,8 @@
+import { AlertContextType } from "../@types/alert";
 import Vehicle from "../@types/vehicle";
+import useAlertContext from "../hooks/useAlertContext";
 import "./VehicleForm.css";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 interface VehicleFormProps {
   setIsInsert: React.Dispatch<React.SetStateAction<boolean>>;
@@ -19,6 +21,8 @@ const VehicleForm: React.FC<VehicleFormProps> = ({
   const [color, setColor] = useState<string>("");
   const [km, setKm] = useState<number>(0);
 
+  const { message } = useAlertContext() as AlertContextType;
+
   const clearForm = () => {
     setBrand("");
     setModel("");
@@ -31,13 +35,18 @@ const VehicleForm: React.FC<VehicleFormProps> = ({
     e.preventDefault();
     const payload: Vehicle = { brand, model, year, color, km };
     createVehicle(payload);
-    clearForm();
   };
 
   const handleCancel = () => {
     clearForm();
     setIsInsert(false);
   };
+
+  useEffect(() => {
+    if (!loading && message.status == "success") {
+      clearForm();
+    }
+  }, [loading, message]);
 
   return (
     <div>
@@ -49,6 +58,7 @@ const VehicleForm: React.FC<VehicleFormProps> = ({
             type="text"
             className="input-form"
             required
+            disabled={loading}
             value={brand}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setBrand(e.target.value);
@@ -61,6 +71,7 @@ const VehicleForm: React.FC<VehicleFormProps> = ({
             type="text"
             className="input-form"
             required
+            disabled={loading}
             value={model}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setModel(e.target.value)
@@ -73,6 +84,7 @@ const VehicleForm: React.FC<VehicleFormProps> = ({
             type="number"
             className="input-form"
             required
+            disabled={loading}
             value={year}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setYear(Number(e.target.value));
@@ -85,6 +97,7 @@ const VehicleForm: React.FC<VehicleFormProps> = ({
             type="text"
             className="input-form"
             required
+            disabled={loading}
             value={color}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setColor(e.target.value);
@@ -97,6 +110,7 @@ const VehicleForm: React.FC<VehicleFormProps> = ({
             type="number"
             className="input-form"
             required
+            disabled={loading}
             value={km}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setKm(Number(e.target.value));

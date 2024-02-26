@@ -26,3 +26,10 @@
 .btn-disabled:hover {
   background-color: rgb(87, 87, 87);
 }
+
+.loader-container {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

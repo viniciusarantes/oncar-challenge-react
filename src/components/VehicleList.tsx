@@ -61,7 +61,7 @@ const VehicleList = () => {
           ))}
       </div>
       {!loading && vehicles && vehicles.length === 0 && (
-        <span className="empty-list">Nenhum carro registrado.</span>
+        <span className="empty-list">Nenhum carro encontrado.</span>
       )}
     </div>
   );
