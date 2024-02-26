@@ -20,7 +20,7 @@ interface SimulationProps {
 
 const VehicleDetails = () => {
   const { id } = useParams();
-  const url = "http://localhost:3000";
+  const url = import.meta.env.VITE_API_URL;
   const { vehicle, loading } = useRequest(`${url}/vehicles/${id}`);
 
   const { createMessage } = useAlertContext() as AlertContextType;

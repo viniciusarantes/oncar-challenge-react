@@ -13,7 +13,7 @@ import VehicleForm from "./VehicleForm";
 import Vehicle from "../@types/vehicle";
 
 const VehicleList = () => {
-  const url = "http://localhost:3000/vehicles";
+  const url = import.meta.env.VITE_API_URL + "/vehicles";
   const {
     data: vehicles,
     loading,
@@ -26,6 +26,8 @@ const VehicleList = () => {
   const handleCreateVehicle = (payload: Vehicle) => {
     createVehicle(payload);
   };
+
+  console.log(url);
 
   return (
     <div className="container">
