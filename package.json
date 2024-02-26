@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "env-cmd -f ./.env.production vite preview"
+    "preview": "vite preview",
+    "serve": "env-cmd -f ./.env.production serve -s dist"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -16,7 +17,8 @@
     "@vitejs/plugin-react": "^4.2.1",
     "env-cmd": "^10.1.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "serve": "^14.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.20",
