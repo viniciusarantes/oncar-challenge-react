@@ -27,8 +27,6 @@ const VehicleList = () => {
     createVehicle(payload);
   };
 
-  console.log(url);
-
   return (
     <div className="container">
       <h1 className="title-list">Lista de Veículos</h1>

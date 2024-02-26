@@ -9,6 +9,7 @@ span.empty-list {
     justify-content: center;
     font-size: 18pt;
     font-weight: bold;
+    text-align: center;
 }
 
 button.btn-new-vehicle {
@@ -29,3 +30,45 @@ button.btn-new-vehicle span {
     grid-auto-rows: auto;
     gap: 5px;
 }
+
+@media screen and (max-width: 1280px) {
+    .vehicle-list {
+        margin: 20px auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: auto;
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .vehicle-list {
+        margin: 10px 0;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: auto;
+        gap: 2px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .vehicle-list {
+        margin: 15px auto;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: auto;
+        gap: 5px;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .vehicle-list {
+        margin: 15px 0;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-auto-rows: auto;
+        gap: 0;
+    }
+}
+
+

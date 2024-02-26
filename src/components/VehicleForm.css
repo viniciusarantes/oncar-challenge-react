@@ -61,3 +61,24 @@ form.form-vehicle label input {
 .btn-cancel:hover {
     background-color: rgb(216, 171, 46);
 }
+
+@media screen and (max-width: 600px) {
+    form.form-vehicle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        margin: auto;
+    }
+    .form-buttons {
+        width: 100%;
+        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .form-buttons button {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
